@@ -1,0 +1,29 @@
+# ===== Unreal Engine 生成物 =====
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.slnx
+*.suo
+
+# ===== IDE =====
+.vs/
+.idea/
+.vscode/
+*.DotSettings.user
+
+# ===== 本仓库仅包含代码 =====
+# Content 资产（约 1.5 GB，含第三方素材）未纳入版本管理，详见 README「仓库范围」
+Content/
+
+# ===== 其他 =====
+*.log
+*.tmp
+*.bak
+_ReSharper*/

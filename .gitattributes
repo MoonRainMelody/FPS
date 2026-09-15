@@ -1,0 +1,26 @@
+# 统一换行：仓库内部一律 LF，避免 Windows 下检出/提交时的 CRLF 警告
+* text=auto eol=lf
+
+# 脚本类保持 CRLF，避免 Windows 上执行异常
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# ===== Unreal 资产为二进制：禁止换行转换，禁止文本 diff =====
+*.uasset binary
+*.umap   binary
+*.uexp   binary
+*.ubulk  binary
+*.upk    binary
+*.udic   binary
+
+# ===== 其它常见二进制 =====
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.tga binary
+*.wav binary
+*.fbx binary
+*.dll binary
+*.lib binary
+*.pdb binary
+*.exe binary
