@@ -1,8 +1,8 @@
-# 多人对战 FPS 原型（FPS00）
+# 多人对战 FPS 原型（FPS）
 
 > Unreal Engine 5.8 · C++ · 38 个源文件 / 3449 行（`.h` + `.cpp`，不含生成的 `Intermediate/`）
 > 核心目标：把**服务器权威的战斗结算**与**完全数据驱动的武器系统**做扎实。
-> 命名对应：作品集中的展示名为「多人对战 FPS 原型」，代码 / 仓库 / 模块代号为 `FPS00`（模块名 `FPS`）。
+> 命名对应：展示名为「多人对战 FPS 原型」，代码 / 仓库 / 模块代号为 `FPS`。
 
 个人项目，独立完成架构设计、玩法实现、网络同步与 UI。
 
@@ -41,7 +41,7 @@ Source/FPS/
 │   ├── UI/            ShooterReticle.h、ReserveAmmo.h、Elims/…
 │   └── Weapon/        Weapon.h
 └── Private/           与上表对应的实现
-Docs/FPS00-设计文档.md  架构图 / 时序图 / 状态机（Mermaid）
+Docs/FPS-设计文档.md  架构图 / 时序图 / 状态机（Mermaid）
 Config/                 DefaultEngine.ini 等（含自定义碰撞通道定义）
 FPS.uproject            引擎关联 5.8，单 Runtime 模块 FPS
 ```

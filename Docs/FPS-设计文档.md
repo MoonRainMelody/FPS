@@ -1,11 +1,11 @@
-# FPS00 设计文档
+# FPS 设计文档
 
 | 项目 | 内容 |
 |---|---|
-| 项目名 | FPS00（模块名 `FPS`） |
+| 项目名 | 多人对战 FPS 原型（代号 `FPS`） |
 | 引擎版本 | Unreal Engine 5.8 |
 | 代码规模 | 38 个 `.h/.cpp` / 3449 行（统计口径：`Source/` 下全部 `.h` + `.cpp`，排除 `Intermediate/`） |
-| 文档版本 | v1.0.3 |
+| 文档版本 | v1.0.4 |
 | 最后更新 | 2026-09-15 |
 | 文档范围 | 项目整体架构 + 战斗与武器系统（含伤害模型） |
 | 绘图方式 | Mermaid（随代码一起维护，共 11 个图） |
@@ -684,3 +684,4 @@ UE 5.8 引擎 `BaseInput.ini` 的 `DebugExecBindings` 将 `LeftShift/RightShift`
 | v1.0.1 | 2026-09-10 | 逐条回代码核对并修正 22 处：修正"伤害参数归属""FABRIK 骨骼名""AdvanceWeaponIndex 条件""Auth_Fire 执行条件""死亡分支所在端""类图访问级别"等不准确表述；补充完整输入绑定表、`UWeaponData` 各字段的实际使用点、`PlayerState` 统计不复制与播报队列细节、`DoDamage` 返回值语义；对无法从代码验证的资产约定（AnimClass、3P 通知、引擎 crouch 实现）加注来源说明 |
 | v1.0.2 | 2026-09-10 | 依据一次**独立交叉核对**（对全部 38 个源文件做了一次通读）再修 18 处，重点纠正：`AWeapon → UWeaponData` 依赖边（实为 Character 经接口查表 `GripPoints`）、换弹后"继续开火"条件（无 `FireType` 判断）、武器状态机图状态名（`Equipped`→`Idle`）与**"三入口互斥"断言**（实际守卫不完整：reload/cycle 都不排除 `Firing`，枚举注释与实现不符）、领先权判定归属（实为 `UEliminationComponent::UpdateLeaderStatus`）、碰撞忽略范围（网格仅忽略 `ECC_Weapon`）、`Rep_Fire` 调用主体（`AWeapon` 方法、在 Multicast 内调用）、通知缺口措辞（缺的是接口入口调用方而非 C++ 调用点）；新增复制清单（PC 与组件 `SetIsReplicated`）、关键默认值表、`UpdateLeader` 与 FirstBlood 的顺序敏感性，并把 7 项资产/引擎约定统一加注 |
 | v1.0.3 | 2026-09-15 | 第三次按代码复核（脚本化抽取文档中全部 335 个反引号符号 + 引擎级声称逐条回查）：① **更正 7.3 的引擎前置条件**——原文写的 `bCanCrouchInAir` 在 UE 5.8 Engine 运行时中并不存在（全量搜索 0 命中），已按 `ACharacter::CanCrouch` / `CanEverCrouch`（`NavMovementInterface.h`）/ `UCharacterMovementComponent::Crouch` 与 `OverlapBlockingTestByChannel` 的真实链条重写；② 更正 v1.0.2 条目里的源文件数（36 → **38**）；③ 核实并保留以下结论——引擎 `BaseInput.ini` 第 51–52 行确实把 Shift 绑定到 `DebugManager.CycleToNext/PreviousColumn`（7.2 成立）、`CharacterMovementComponent::CanCrouchInCurrentState()` 确实存在、`AShooterPlayerState::ShowSpecialElim` 中 `Double/Triple/Quad Elim!` 与 `Rampage x%d!` / `Streak x%d!` 文案覆盖确实存在于 C++（6.2 成立）、`Content/FPS/Input/InputAction/` 下 8 个 `IA_*` 资产与 2.5 绑定表逐名一致、`FP_AM_*_Equip` 资产命名成立；④ 核对 4.1 状态机与守卫表、6.1 生命状态机、7.1 通知缺口三处与代码一致；⑤ 文档头补充代码规模、图数与仓库链接 |
+| v1.0.4 | 2026-09-17 | **项目代号统一改名：`FPS00` → `FPS`**（与模块名 `FPS`、`FPS.uproject`、GitHub 仓库 `MoonRainMelody/FPS` 一致）。同步更新：文档标题与项目名行、`README.md` 的命名说明；文件名由 `Docs/FPS00-设计文档.md` 改为 `Docs/FPS-设计文档.md`。**正文技术内容与本版无任何变化**（改名不涉及代码） |
